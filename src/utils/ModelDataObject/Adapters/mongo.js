@@ -1,7 +1,7 @@
 import path from 'path'
-import mongoose from '@config/mongoose'
 
-import config from '@config/index'
+import config from '@config'
+import mongoose from '@config/database/mongoose'
 
 const mongooseProp = Symbol('mongoose')
 

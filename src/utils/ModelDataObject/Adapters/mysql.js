@@ -1,4 +1,4 @@
-import { prisma } from '@config/prisma.mysql'
+import { prisma } from '@config/database/prisma.mysql'
 
 const mysqlProp = Symbol('mysql')
 const modelProp = Symbol('model')

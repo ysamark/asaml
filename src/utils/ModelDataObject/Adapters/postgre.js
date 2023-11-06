@@ -1,48 +1,48 @@
-import path from 'path'
-import mongoose from '@config/mongoose'
+// import path from 'path'
+// import postgres from '@config/database/postgres'
 
-import config from '@config/index'
+// import config from '@config/index'
 
-const mongooseProp = Symbol('mongoose')
+const postgresProp = Symbol('postgres')
 
-export default class Mongo {
-  [mongooseProp] = null
+export default class Postgres {
+  [postgresProp] = null
 
-  constructor (mongoose) {
-    this[mongooseProp] = mongoose
+  constructor (postgres) {
+    this[postgresProp] = postgres
   }
 
   static setupModel ({ modelClassObject, modelFile }) {
-    const modelSchemaFilePath = path.join(config.schemasPath, [modelFile.replace(/((Schema)?\.js)$/i, ''), 'js'].join('.'))
-    const modelName = modelFile.replace(/\.js$/i, '')
+    // const modelSchemaFilePath = path.join(config.schemasPath, [modelFile.replace(/((Schema)?\.js)$/i, ''), 'js'].join('.'))
+    // const modelName = modelFile.replace(/\.js$/i, '')
 
-    try {
-      const modelSchemaObject = require(modelSchemaFilePath)
-      const modelSchema = new mongoose.Schema(modelSchemaObject.default)
+    // try {
+    //   const modelSchemaObject = require(modelSchemaFilePath)
+    //   const modelSchema = new postgres.Schema(modelSchemaObject.default)
 
-      Object.getOwnPropertyNames(modelClassObject).forEach(key => {
-        const match = key.match(/^(post|pre)(.+)/i)
+    //   Object.getOwnPropertyNames(modelClassObject).forEach(key => {
+    //     const match = key.match(/^(post|pre)(.+)/i)
 
-        if (match) {
-          const [
-            modelClassObjectMethodName,
-            modelSchemaHookAdderMethodName /* pre, post */,
-            modelSchemaHookName
-          ] = match
+    //     if (match) {
+    //       const [
+    //         modelClassObjectMethodName,
+    //         modelSchemaHookAdderMethodName /* pre, post */,
+    //         modelSchemaHookName
+    //       ] = match
 
-          modelSchema[modelSchemaHookAdderMethodName.toLowerCase()](
-            modelSchemaHookName.toLowerCase(),
-            modelClassObject[modelClassObjectMethodName]
-          )
-        }
-      })
+    //       modelSchema[modelSchemaHookAdderMethodName.toLowerCase()](
+    //         modelSchemaHookName.toLowerCase(),
+    //         modelClassObject[modelClassObjectMethodName]
+    //       )
+    //     }
+    //   })
 
-      const modelDataObject = mongoose.model(modelName, modelSchema)
+    //   const modelDataObject = postgres.model(modelName, modelSchema)
 
-      modelClassObject.registerModuleDataObject(modelDataObject)
-    } catch (err) {
-      throw new Error(err)
-    }
+    //   modelClassObject.registerModuleDataObject(modelDataObject)
+    // } catch (err) {
+    //   throw new Error(err)
+    // }
   }
 
   /*
