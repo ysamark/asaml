@@ -1,7 +1,7 @@
 name: publish
 
 permissions:
-  contents: read
+  contents: read|write
   pages: write          # <-- Add this line
 
 on:
@@ -40,19 +40,17 @@ jobs:
 
       - name: Git Identity
         run: |
-          git config --global user.name '${USER_NAME}'
-          git config --global user.email '${USER_EMAIL}'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USER_NAME: github-actions[bot]
-          USER_EMAIL: github-actions[bot]@users.noreply.github.com
       - name: update the module version
-        run: |
-          npm version minor
-          git push origin main
+        run: npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: push version update to the repository
+        run: git push origin main
       - name: publish the module to the node package manager #2
         run: npm publish --access public
         env:
