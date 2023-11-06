@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import config from '@asa/src/config'
+import config from '@asa/config'
 
 import { getAppModules, isDir } from '.'
 
@@ -99,7 +99,7 @@ export function updateApplicationPaths () {
   const jsConfigPaths = jsConfig.compilerOptions.paths || {}
   const modulePathRe = /^(([a-zA-z0-9_\\$]+):@.+)/
   const appDefaultPaths = {}
-  const defaultModulePaths = createDefaultModulePaths({ config })
+  const defaultModulePaths = createDefaultModulePaths({ jsConfig })
 
   for (const pathKey in jsConfigPaths) {
     const path = jsConfigPaths[pathKey]

@@ -1,5 +1,5 @@
 const { compilerOptions } = require('./jsconfig.json')
-const { pathsToModuleAliases } = require('./utils/console')
+const { pathsToModuleAliases } = require('./src/utils/console')
 
 module.exports = {
   presets: [
@@ -17,7 +17,9 @@ module.exports = {
     [
       'babel-plugin-module-resolver',
       {
-        alias: pathsToModuleAliases(compilerOptions.paths, { prefix: '.' })
+        alias: pathsToModuleAliases(compilerOptions.paths, {
+          prefix: compilerOptions.baseUrl
+        })
       }
     ],
     '@babel/plugin-proposal-class-properties',

@@ -7,14 +7,14 @@
   "icon": "src/assets/icon.png",
   "private": false,
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
-  "displayName": "Asa",
+  "displayName": "Asa.ml",
   "homepage": "https://github.com/ysamark/asaml#readme",
   "scripts": {
     "dev": "cross-env NODE_ENV=development DEBUG=app:root PORT=3000 nodemon src/server.development.js --trace-warnings",
     "start:dev": "cross-env NODE_ENV=production DEBUG=app:root PORT=3000 node -r dotenv/config dist/server.js",
     "start": "node dist/server.js",
     "build:sucrase": "sucrase . -d ./dist --transforms imports",
-    "build": "babel . --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored",
+    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored",
     "test": "cross-env NODE_ENV=test jest",
     "lint": "eslint --ext .js src/",
     "commit": "cz"
