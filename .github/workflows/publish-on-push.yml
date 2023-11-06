@@ -41,8 +41,8 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USER_NAME: Agostinho Sam'l
-          USER_EMAIL: agostinhosaml832@gmail.com
+          USER_NAME: github-actions[bot]
+          USER_EMAIL: github-actions[bot]@users.noreply.github.com
       - name: update the module version
         run: |
           npm version minor
