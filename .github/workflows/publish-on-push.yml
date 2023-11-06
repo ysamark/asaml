@@ -1,7 +1,7 @@
 name: publish
 
 permissions:
-  contents: read|write
+  contents: write
   pages: write          # <-- Add this line
 
 on:
