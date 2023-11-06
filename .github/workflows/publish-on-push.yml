@@ -2,7 +2,7 @@ name: publish
 
 permissions:
   contents: write
-  pages: write          # <-- Add this line
+  pages: write
 
 on:
   push:
