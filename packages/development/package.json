@@ -1,6 +1,6 @@
 {
   "name": "asaml-dev",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Asa.ml development package",
   "main": "dist/index.js",
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
