@@ -7,6 +7,9 @@
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "echo \"No build yet\""
+  },
   "bin": {
     "dev": "./bin/dev",
     "start-dev": "./bin/start-dev",

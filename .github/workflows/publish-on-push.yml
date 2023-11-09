@@ -78,15 +78,21 @@ jobs:
 
       # Publish development package
       - name: open development package directory
-        run: cd $developmentPackageDir
+        run: cd packages/development
       - name: update the module version
-        run: npm version minor
+        run: |
+          cd packages/development
+          npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
-        run: yarn build
+        run: |
+          cd packages/development
+          yarn build
       - name: publish the development module to the node package manager #2
-        run: npm publish --access public
+        run: |
+          cd packages/development
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       # End Publish development package
