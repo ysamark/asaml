@@ -1,4 +1,4 @@
-name: publish
+name: PublishOnPush
 
 permissions:
   contents: write
@@ -26,11 +26,9 @@ jobs:
           path: node_modules
           key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
 
-      - name: Install Package Dependenciess
+      - name: Install Package Dependencies
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: yarn
-      - name: Build the Package
-        run: yarn build
 
       - name: Setup NodeJS
         uses: actions/setup-node@v1.4.2
@@ -45,13 +43,48 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+
+      - name: store packages paths
+        run: |
+          rootDir=$(pwd)
+          productionPackageDir=$(pwd)/packages/production
+          developmentPackageDir=$(pwd)/packages/development
+
+
+      # Publish production package
+      - name: open production package directory
+        run: cd $productionPackageDir
       - name: update the module version
         run: npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-      - name: push version update to the repository
-        run: git push origin main
+      - name: Build the Package
+        run: yarn build
       - name: publish the module to the node package manager #2
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # End Publish production package
+
+      # Publish development package
+      - name: open development package directory
+        run: cd $developmentPackageDir
+      - name: update the module version
+        run: npm version minor
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Build the Package
+        run: yarn build
+      - name: publish the module to the node package manager #2
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # End Publish development package
+
+      - name: push version updates to the repository
+        run: |
+          cd $rootDir
+          git add .
+          git commit -m "feat: update packages versions"
+          git push origin main

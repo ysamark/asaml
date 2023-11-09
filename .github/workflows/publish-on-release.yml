@@ -1,4 +1,8 @@
-name: publish
+name: PublishOnRelease
+
+permissions:
+  contents: write
+  pages: write
 
 on:
   release:
@@ -22,11 +26,9 @@ jobs:
           path: node_modules
           key: 12.x-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
 
-      - name: Install Package Dependenciess
+      - name: Install Package Dependencies
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: yarn
-      - name: Build the Package
-        run: yarn build
 
       - name: Setup NodeJS
         uses: actions/setup-node@v1.4.2
@@ -36,20 +38,53 @@ jobs:
 
       - name: Git Identity
         run: |
-          git config --global user.name '${USER_NAME}'
-          git config --global user.email '${USER_EMAIL}'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USER_NAME: Agostinho Sam'l
-          USER_EMAIL: agostinhosaml832@gmail.com
-      - name: update the module version
+      
+
+      - name: store packages paths
         run: |
-          npm version major
-          git push origin main
+          rootDir=$(CWD)
+          productionPackageDir=$(CWD)/packages/production
+          developmentPackageDir=$(CWD)/packages/development
+
+
+      # Publish production package
+      - name: open production package directory
+        run: cd $productionPackageDir
+      - name: update the module version
+        run: npm version major
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Build the Package
+        run: yarn build
       - name: publish the module to the node package manager #2
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # End Publish production package
+
+      # Publish development package
+      - name: open development package directory
+        run: cd $developmentPackageDir
+      - name: update the module version
+        run: npm version major
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Build the Package
+        run: yarn build
+      - name: publish the module to the node package manager #2
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      # End Publish development package
+
+      - name: push version updates to the repository
+        run: |
+          cd $rootDir
+          git add .
+          git commit -m "feat: update packages versions"
+          git push origin main
