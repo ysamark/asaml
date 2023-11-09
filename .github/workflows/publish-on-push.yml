@@ -56,13 +56,19 @@ jobs:
       - name: open production package directory
         run: cd $productionPackageDir
       - name: update the module version
-        run: npm version minor
+        run: |
+          cd $productionPackageDir
+          npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
-        run: yarn build
-      - name: publish the module to the node package manager #2
-        run: npm publish --access public
+        run: |
+          cd $productionPackageDir
+          yarn build
+      - name: publish the production module to the node package manager #2
+        run: |
+          cd $productionPackageDir
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       # End Publish production package
@@ -76,7 +82,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
         run: yarn build
-      - name: publish the module to the node package manager #2
+      - name: publish the development module to the node package manager #2
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
