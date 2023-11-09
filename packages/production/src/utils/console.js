@@ -1,8 +1,8 @@
-export const array = ([args]) => {
+const array = ([args]) => {
   return args.trim().split(/\n+/).map(i => i.trim()) // Array.from(args).map(i => i.trim())
 }
 
-export const moduleAliasesToModuleNameMapper = (moduleAliases, options) => {
+const moduleAliasesToModuleNameMapper = (moduleAliases, options) => {
   const moduleNameMap = {}
 
   const pathPrefix = typeof options.prefix === typeof 'str' ? options.prefix.replace(/(\/)+$/, '') : ''
@@ -21,7 +21,7 @@ export const moduleAliasesToModuleNameMapper = (moduleAliases, options) => {
   return moduleNameMap
 }
 
-export const pathsToModuleAliases = (paths, options) => {
+const pathsToModuleAliases = (paths, options) => {
   const moduleAliases = {}
   const pathPrefix = typeof options.prefix === typeof 'str' ? options.prefix.replace(/(\/)+$/, '') : ''
   const acceptMultiple = typeof options.multiple !== typeof true ? true : options.multiple
@@ -107,7 +107,7 @@ export const pathsToModuleAliases = (paths, options) => {
   return moduleAliases
 }
 
-export const pathsToModuleNameMapper = (paths, options) => {
+const pathsToModuleNameMapper = (paths, options) => {
   // moduleAliasesToModuleNameMapper, pathsToModuleAliases
   // paths = export const pathsToModuleAliases(paths, { prefix: '.' })
   const moduleAliases = {}
@@ -144,3 +144,10 @@ export const pathsToModuleNameMapper = (paths, options) => {
 
   return moduleAliases
 }
+
+Object.assign(exports, {
+  array,
+  moduleAliasesToModuleNameMapper,
+  pathsToModuleAliases,
+  pathsToModuleNameMapper
+})
