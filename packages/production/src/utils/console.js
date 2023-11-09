@@ -30,9 +30,9 @@ const pathsToModuleAliases = (paths, options) => {
     const aliasPathKey = aliasPath.replace(/(\/)?\*$/, '')
 
     if (paths[aliasPath] instanceof Array && (paths[aliasPath].length === 1 || !acceptMultiple)) {
-      const aliasPathValue = paths[aliasPath][0]?.replace(/(\/)?\*$/, '')
+      const aliasPathValue = paths[aliasPath][0]
 
-      const aliasPathSource = [pathPrefix, aliasPathValue || ''].join('/')
+      const aliasPathSource = [pathPrefix, (typeof aliasPathValue === 'string' ? aliasPathValue.replace(/(\/)?\*$/, '') : '')].join('/')
 
       moduleAliases[aliasPathKey] = aliasPathSource
 
