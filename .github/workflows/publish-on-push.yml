@@ -71,6 +71,11 @@ jobs:
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: push production package version update to the repository
+        run: |
+          git add .
+          git commit -m "feat: update production package version"
+          git push origin main    
       # End Publish production package
 
       - name: some command just to see something # remove it now
@@ -95,11 +100,9 @@ jobs:
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-      # End Publish development package
-
-      - name: push version updates to the repository
+      - name: push development package version update to the repository
         run: |
-          cd $rootDir
           git add .
-          git commit -m "feat: update packages versions"
-          git push origin main
+          git commit -m "feat: update development package version"
+          git push origin main 
+      # End Publish development package
