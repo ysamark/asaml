@@ -1,9 +1,8 @@
 {
-  "name": "@asaml/dev",
+  "name": "asaml-dev",
   "version": "1.0.0",
   "description": "Asa.ml development package",
   "main": "dist/index.js",
-  "repository": "https://github.com/ysamark/asaml.git",
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
   "license": "MIT",
   "private": false,
