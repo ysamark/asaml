@@ -33,7 +33,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v1.4.2
         with:
-          node-version: 12
+          node-version: 17
           registry-url: https://registry.npmjs.org
 
       - name: Git Identity
@@ -47,44 +47,62 @@ jobs:
 
       - name: store packages paths
         run: |
-          rootDir=$(CWD)
-          productionPackageDir=$(CWD)/packages/production
-          developmentPackageDir=$(CWD)/packages/development
+          rootDir=$(pwd)
+          productionPackageDir=$(pwd)/packages/production
+          developmentPackageDir=$(pwd)/packages/development
 
 
       # Publish production package
       - name: open production package directory
-        run: cd $productionPackageDir
+        run: cd packages/production
       - name: update the module version
-        run: npm version major
+        run: |
+          cd packages/production
+          npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
-        run: yarn build
-      - name: publish the module to the node package manager #2
-        run: npm publish --access public
+        run: |
+          cd packages/production
+          yarn build
+      - name: publish the production module to the node package manager #2
+        run: |
+          cd packages/production
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: push production package version update to the repository
+        run: |
+          git add .
+          git commit -m "feat: update production package version"
+          git push origin main    
       # End Publish production package
+
+      - name: some command just to see something # remove it now
+        run: pwd
 
       # Publish development package
       - name: open development package directory
-        run: cd $developmentPackageDir
+        run: cd packages/development
       - name: update the module version
-        run: npm version major
+        run: |
+          cd packages/development
+          npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
-        run: yarn build
-      - name: publish the module to the node package manager #2
-        run: npm publish --access public
+        run: |
+          cd packages/development
+          yarn build
+      - name: publish the development module to the node package manager #2
+        run: |
+          cd packages/development
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-      # End Publish development package
-
-      - name: push version updates to the repository
+      - name: push development package version update to the repository
         run: |
-          cd $rootDir
           git add .
-          git commit -m "feat: update packages versions"
-          git push origin main
+          git commit -m "feat: update development package version"
+          git push origin main 
+      # End Publish development package
