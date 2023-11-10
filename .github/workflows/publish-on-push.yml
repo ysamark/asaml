@@ -78,9 +78,6 @@ jobs:
           git push origin main    
       # End Publish production package
 
-      - name: some command just to see something # remove it now
-        run: pwd
-
       # Publish development package
       - name: open development package directory
         run: cd packages/development
