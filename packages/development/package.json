@@ -10,12 +10,12 @@
     "build": "echo \"No build yet\""
   },
   "bin": {
-    "dev": "./bin/dev",
-    "start-dev": "./bin/start-dev",
-    "build": "./bin/build",
-    "test": "./bin/test",
-    "lint": "./bin/lint",
-    "commit": "./bin/cz"
+    "dev": "./bin/dev.js",
+    "start-dev": "./bin/start-dev.js",
+    "build": "./bin/build.js",
+    "test": "./bin/test.js",
+    "lint": "./bin/lint.js",
+    "commit": "./bin/cz.js"
   },
   "files": [
     "dist",
