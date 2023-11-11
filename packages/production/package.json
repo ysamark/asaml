@@ -61,7 +61,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "asaml-dev": "^1.2.0"
+    "asaml-dev": "latest"
   },
   "husky": {
     "hooks": {
