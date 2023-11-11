@@ -3,5 +3,5 @@
 const { system } = require('../vendor/system')
 
 system`
-  npm run cross-env NODE_ENV=test jest
+  npx cross-env NODE_ENV=test jest
 `
