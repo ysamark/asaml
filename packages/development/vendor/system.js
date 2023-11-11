@@ -19,17 +19,19 @@ exports.system = (props, ...values) => {
 
   const command = lines.join('')
 
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.log(`error: ${error.message}`)
+  exec(command, (execError, stdout, stderr) => {
+    const { error, log } = console
+
+    if (execError) {
+      error(`error: ${execError.message}`)
       return
     }
 
     if (stderr) {
-      console.log(`stderr: ${stderr}`)
+      error(`stderr: ${stderr}`)
       return
     }
 
-    console.log('stdout => ', stdout)
+    log(stdout)
   })
 }
