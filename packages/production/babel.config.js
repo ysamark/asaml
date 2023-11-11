@@ -1,5 +1,5 @@
 const { compilerOptions } = require('./jsconfig.json')
-const { pathsToModuleAliases } = require('./src/utils/console')
+const { pathsToModuleAliases } = require('asaml-dev')
 
 module.exports = {
   presets: [
