@@ -11,8 +11,8 @@ exports.system = (props, ...values) => {
     lines.push(
       line
         .split(/\n+/)
-        .filter(l => /\S/.test(l))
-        .map(l => l.trim())
+        .filter(lineSlice => /\S/.test(lineSlice))
+        .map(lineSlice => lineSlice.replace(/(^\s{2,}|\s{2,}$)/, ' '))
         .join(' && ')
     )
   }
