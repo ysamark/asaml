@@ -1,6 +1,6 @@
 {
   "name": "asaml-dev",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "description": "Asa.ml development package",
   "main": "dist/index.js",
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
@@ -16,6 +16,9 @@
     "test": "./bin/test.js",
     "lint": "./bin/lint.js",
     "commit": "./bin/cz.js"
+  },
+  "directories": {
+    ".": "./dist"
   },
   "files": [
     "dist/**/*",
