@@ -20,7 +20,7 @@
     "commit": "cz"
   },
   "files": [
-    "dist",
+    "dist/**/*",
     "README.md"
   ],
   "bugs": {
