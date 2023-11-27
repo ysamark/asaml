@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "node bin/build.js"
+    "build": "node bin/build.js && node vendor/dist-package-files.js"
   },
   "bin": {
     "dev": "./bin/dev.js",
@@ -17,16 +17,8 @@
     "lint": "./bin/lint.js",
     "commit": "./bin/cz.js"
   },
-  "directories": {
-    ".": "./dist"
-  },
-  "files": [
-    "dist/**/*",
-    "bin",
-    "vendor",
-    "README.md"
-  ],
   "dependencies": {
+    "@asaml/fs-helpers": "^1.1.0",
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.19.3",
     "@babel/node": "^7.19.1",

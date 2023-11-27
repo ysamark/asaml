@@ -14,7 +14,7 @@
     "start:dev": "cross-env NODE_ENV=production DEBUG=app:root PORT=3000 node -r dotenv/config dist/server.js",
     "start": "node dist/server.js",
     "build:sucrase": "sucrase . -d ./dist --transforms imports",
-    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored",
+    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored && node vendor/dist-package-files.js",
     "test": "cross-env NODE_ENV=test jest",
     "lint": "eslint --ext .js src/",
     "commit": "cz"

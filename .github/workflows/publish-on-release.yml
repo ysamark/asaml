@@ -1,4 +1,4 @@
-name: PublishOnRelease
+name: PublishOnPush
 
 permissions:
   contents: write
@@ -53,12 +53,12 @@ jobs:
 
 
       # Publish production package
-      - name: open production package directory
-        run: cd packages/production
+      # - name: open production package directory
+      #   run: cd packages/production/dist
       - name: update the module version
         run: |
           cd packages/production
-          npm version minor
+          npm version major
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
@@ -67,7 +67,7 @@ jobs:
           yarn build
       - name: publish the production module to the node package manager #2
         run: |
-          cd packages/production
+          cd packages/production/dist
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
@@ -79,12 +79,12 @@ jobs:
       # End Publish production package
 
       # Publish development package
-      - name: open development package directory
-        run: cd packages/development
+      # - name: open development package directory
+      #   run: cd packages/development/dist
       - name: update the module version
         run: |
           cd packages/development
-          npm version minor
+          npm version major
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
@@ -93,7 +93,7 @@ jobs:
           yarn build
       - name: publish the development module to the node package manager #2
         run: |
-          cd packages/development
+          cd packages/development/dist
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
