@@ -1,8 +1,8 @@
 {
   "name": "asaml",
   "description": "Web application builder framework",
-  "version": "1.8.0",
-  "main": "dist/index.js",
+  "version": "1.9.0",
+  "main": "index.js",
   "license": "MIT",
   "icon": "src/assets/icon.png",
   "private": false,
@@ -19,13 +19,6 @@
     "lint": "eslint --ext .js src/",
     "commit": "cz"
   },
-  "directories": {
-    ".": "./dist"
-  },
-  "files": [
-    "dist/**/*",
-    "README.md"
-  ],
   "bugs": {
     "url": "https://github.com/ysamark/asaml/issues",
     "email": "hatatsu@ysamark.ao"

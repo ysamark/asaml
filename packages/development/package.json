@@ -1,8 +1,8 @@
 {
   "name": "asaml-dev",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Asa.ml development package",
-  "main": "dist/index.js",
+  "main": "index.js",
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
   "license": "MIT",
   "private": false,
