@@ -86,6 +86,10 @@ jobs:
           npm version minor
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Install asaml-dev Package
+        run: |
+          cd packages/production
+          yarn add asaml-dev
       - name: Build the Package
         run: |
           cd packages/production
