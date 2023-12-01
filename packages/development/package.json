@@ -1,21 +1,24 @@
 {
   "name": "asaml-dev",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Asa.ml development package",
   "main": "index.js",
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "node bin/build.js && node vendor/dist-package-files.js"
+    "dev": "sucrase-node bin/dev.js",
+    "postbuild": "node bin/dist.js",
+    "build": "node bin/build.js"
   },
   "bin": {
     "dev": "./bin/dev.js",
-    "start-dev": "./bin/start-dev.js",
-    "build": "./bin/build.js",
     "test": "./bin/test.js",
     "lint": "./bin/lint.js",
-    "commit": "./bin/cz.js"
+    "commit": "./bin/cz.js",
+    "dist-package": "./bin/dist.js",
+    "build": "./bin/build.js",
+    "start-dev": "./bin/start-dev.js"
   },
   "dependencies": {
     "@asaml/fs-helpers": "^1.1.0",
@@ -31,6 +34,7 @@
     "@faker-js/faker": "^7.6.0",
     "@sucrase/jest-plugin": "^2.2.1",
     "babel-plugin-module-resolver": "^4.1.0",
+    "chokidar": "^3.5.3",
     "commitizen": "^4.2.5",
     "cross-env": "^7.0.3",
     "cypress": "^13.3.2",
@@ -52,6 +56,13 @@
     "prisma": "^4.6.0",
     "sucrase": "^3.28.0",
     "supertest": "^6.3.0",
+    "tree-kill": "^1.2.2",
     "vitest": "^0.34.6"
-  }
+  },
+  "dist": [
+    "README.md",
+    "package.json",
+    "vendor",
+    "bin"
+  ]
 }

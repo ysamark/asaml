@@ -1,4 +1,5 @@
 export { array } from './utils/array'
-export { moduleAliasesToModuleNameMapper } from './utils/moduleAliasesToModuleNameMapper'
+export { distPackageFiles } from './dist-package-files'
 export { pathsToModuleAliases } from './utils/pathsToModuleAliases'
+export { moduleAliasesToModuleNameMapper } from './utils/moduleAliasesToModuleNameMapper'
 export { pathsToModuleNameMapper } from './utils/pathsToModuleNameMapper'

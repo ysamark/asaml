@@ -1,0 +1,12 @@
+{
+  "watch": [
+    "vendor"
+  ],
+  "execMap": {
+    "js": "sucrase-node src/app.js --cache-assets --strict=False"
+  },
+  "env": {
+    "MY_NAME": "Samil",
+    "APP_NAME": "AmazingA"
+  }
+}

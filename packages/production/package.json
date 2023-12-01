@@ -1,7 +1,7 @@
 {
   "name": "asaml",
   "description": "Web application builder framework",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "main": "index.js",
   "license": "MIT",
   "icon": "src/assets/icon.png",
@@ -10,11 +10,8 @@
   "displayName": "Asa.ml",
   "homepage": "https://github.com/ysamark/asaml#readme",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development DEBUG=app:root PORT=3000 nodemon src/server.development.js --trace-warnings",
-    "start:dev": "cross-env NODE_ENV=production DEBUG=app:root PORT=3000 node -r dotenv/config dist/server.js",
-    "start": "node dist/server.js",
-    "build:sucrase": "sucrase . -d ./dist --transforms imports",
-    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored && node vendor/dist-package-files.js",
+    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored",
+    "postbuild": "dist-package",
     "test": "cross-env NODE_ENV=test jest",
     "lint": "eslint --ext .js src/",
     "commit": "cz"
@@ -63,5 +60,9 @@
     "hooks": {
       "prepare-ommit-msg": "exec < /dev/tty && npx cz --hook || true"
     }
-  }
+  },
+  "dist": [
+    "README.md",
+    "package.json"
+  ]
 }

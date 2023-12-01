@@ -23,13 +23,11 @@ exports.system = (props, ...values) => {
     const { error, log } = console
 
     if (execError) {
-      error(`error: ${execError.message}`)
-      return
+      return error(`error: ${execError.message}`)
     }
 
     if (stderr) {
-      error(`stderr: ${stderr}`)
-      return
+      return error(`stderr: ${stderr}`)
     }
 
     log(stdout)
