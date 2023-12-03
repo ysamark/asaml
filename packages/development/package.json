@@ -1,15 +1,15 @@
 {
   "name": "asaml-dev",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Asa.ml development package",
   "main": "index.js",
   "author": "Ysamark Development Team <hatatsu@ysamark.ao> (https://ysamark.ao/hatatsu)",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "sucrase-node bin/dev.js",
-    "postbuild": "node bin/dist.js",
-    "build": "node bin/build.js"
+    "dev": "sucrase-node bin.dev/dev.js",
+    "postbuild": "sucrase-node bin.dev/dist.js",
+    "build": "sucrase-node bin.dev/build.js"
   },
   "bin": {
     "dev": "./bin/dev.js",
