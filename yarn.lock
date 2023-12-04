@@ -2204,7 +2204,7 @@
 
 "asaml@file:/home/runner/work/asaml/asaml/packages/production":
   "resolved" "file:packages/production"
-  "version" "1.10.0"
+  "version" "1.11.0"
   dependencies:
     "@prisma/client" "^4.6.0"
     "bcryptjs" "^2.4.3"
