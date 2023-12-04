@@ -1,17 +1,4 @@
-// const path = require('path')
+const { distPackageFiles } = require('asaml-dev/dist-package-files')
+const { getPackageDist } = require('asaml-dev/get-package-dist')
 
-// const { copyFileTo } = require('@asaml/fs-helpers')
-
-// const files = [
-//   'README.md',
-//   'package.json'
-// ]
-
-// for (const fileName of files) {
-//   const filePath = path.resolve(__dirname, '..', fileName)
-
-//   copyFileTo({
-//     filePath,
-//     destDir: '../dist'
-//   })
-// }
+distPackageFiles(getPackageDist())
