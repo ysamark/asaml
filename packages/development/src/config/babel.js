@@ -1,30 +1,7 @@
-import path from 'path'
-
 import { pathsToModuleAliases } from '..'
+import { getPackageLangConfig } from '../utils'
 
-let packageJsConfig = {
-  compilerOptions: {
-    paths: {}
-  }
-}
-
-const packageJsConfigFileAlternates = [
-  'tsconfig.json',
-  'jsconfig.json'
-]
-
-for (const packageJsConfigFile of packageJsConfigFileAlternates) {
-  try {
-    const packageJsConfigFilePath = path.resolve(process.cwd(), packageJsConfigFile)
-    packageJsConfig = require(packageJsConfigFilePath)
-
-    if (typeof packageJsConfig === 'object') {
-      break
-    }
-  } catch (err) {
-    continue
-  }
-}
+const packageLangConfig = getPackageLangConfig()
 
 const babelDefaultConfig = {
   presets: [
@@ -45,8 +22,8 @@ const babelDefaultConfig = {
     [
       'babel-plugin-module-resolver',
       {
-        alias: pathsToModuleAliases(packageJsConfig.compilerOptions.paths, {
-          prefix: packageJsConfig.compilerOptions.rootDir
+        alias: pathsToModuleAliases(packageLangConfig.compilerOptions.paths, {
+          prefix: packageLangConfig.compilerOptions.rootDir
         })
       }
     ],
