@@ -59,3 +59,56 @@ export const serverWatchDirListMapper = ({ rootDir }) => {
     path.resolve(rootDir, relativePath)
   )
 }
+
+export const getProjectDefaultLang = (props) => {
+  const langConfigFile = getPackageLangConfigFile(props)
+  const langConfigFileName = path.basename(langConfigFile)
+
+  const defaultLang = 'js'
+  const langNameRe = /^(((j|t)s)config\.json)$/
+
+  if (langNameRe.test(langConfigFileName)) {
+    const [lang] = langConfigFileName.match(langNameRe).slice(2)
+
+    if (typeof lang === typeof 'str') {
+      return lang
+    }
+  }
+
+  return defaultLang
+}
+
+export const getPackageLangConfigFile = (props) => {
+  const rootDir = props.rootDir || process.cwd()
+
+  const packageConfigFileNameAlternates = [
+    'tsconfig.json',
+    'jsconfig.json'
+  ]
+
+  for (const packageConfigFile of packageConfigFileNameAlternates) {
+    const packageConfigFilePath = path.resolve(rootDir, packageConfigFile)
+
+    if (fs.existsSync(packageConfigFilePath)) {
+      return packageConfigFilePath
+    }
+  }
+}
+
+export const getPackageLangConfig = () => {
+  const packagePackageLangConfigFile = getPackageLangConfigFile()
+
+  if (packagePackageLangConfigFile) {
+    try {
+      const packageLangConfig = require(packagePackageLangConfigFile)
+
+      return packageLangConfig
+    } catch (err) {}
+  }
+
+  return {
+    compilerOptions: {
+      paths: {}
+    }
+  }
+}
