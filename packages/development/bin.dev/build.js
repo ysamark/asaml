@@ -3,5 +3,5 @@
 const { system } = require('../vendor/system')
 
 system`
-  npx babel src --config-file "./babel.config.js" --extensions ".js" --out-dir dist --copy-files --no-copy-ignored
+  npx babel src --config-file "./babel.config.js" --extensions ".js,.ts" --out-dir dist --copy-files --no-copy-ignored
 `
