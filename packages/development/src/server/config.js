@@ -16,6 +16,7 @@ export const defaultServerConfig = {
   },
 
   execMap: {
-    js: 'sucrase-node'
+    js: 'sucrase-node',
+    ts: 'sucrase-node'
   }
 }
