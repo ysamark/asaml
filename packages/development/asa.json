@@ -1,9 +1,10 @@
 {
+  "entrypoint": "src/server.ts",
   "watch": [
     "vendor"
   ],
   "execMap": {
-    "js": "sucrase-node src/app.js --cache-assets --strict=False"
+    "ts": "sucrase-node --cache-assets --strict=False"
   },
   "env": {
     "MY_NAME": "Samil",
