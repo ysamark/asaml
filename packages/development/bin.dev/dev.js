@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-require('../dist/server/startDevServer')
+require('../src/server/startDevServer')
   .startDevServer()

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { distPackageFiles } = require('../dist/dist-package-files')
-const { getPackageDist } = require('../dist/get-package-dist')
+const { distPackageFiles } = require('../src/dist-package-files')
+const { getPackageDist } = require('../src/get-package-dist')
 
 distPackageFiles(getPackageDist())
