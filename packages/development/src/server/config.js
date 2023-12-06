@@ -1,4 +1,4 @@
-import { getProjectDefaultLang } from '../utils'
+import { getProjectDefaultLang } from './utils'
 
 export const defaultServerConfig = {
   entrypoint: `src/server.development.${getProjectDefaultLang()}`,
