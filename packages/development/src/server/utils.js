@@ -60,7 +60,7 @@ export const serverWatchDirListMapper = ({ rootDir }) => {
   )
 }
 
-export const getProjectDefaultLang = (props) => {
+export const getProjectDefaultLang = (props = {}) => {
   const langConfigFile = getPackageLangConfigFile(props)
   const langConfigFileName = path.basename(langConfigFile)
 
@@ -78,7 +78,7 @@ export const getProjectDefaultLang = (props) => {
   return defaultLang
 }
 
-export const getPackageLangConfigFile = (props) => {
+export const getPackageLangConfigFile = (props = {}) => {
   const rootDir = props.rootDir || process.cwd()
 
   const packageConfigFileNameAlternates = [
