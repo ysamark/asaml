@@ -12,8 +12,8 @@ export function getPackageDist (options) {
     const packageJsonFilePath = path.resolve(rootDir, 'package.json')
     const packageJsonFile = require(packageJsonFilePath)
 
-    if (packageJsonFile.dist instanceof Array) {
-      return packageJsonFile.dist
+    if (typeof packageJsonFile.dist === 'object' && packageJsonFile.dist.paths instanceof Array) {
+      return packageJsonFile.dist.paths
     }
   } catch (err) {
   }
