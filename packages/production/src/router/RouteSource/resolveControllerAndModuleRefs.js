@@ -3,12 +3,12 @@ import { config } from '@asa'
 export function resolveControllerAndModuleRefs (routeSourcePath) {
   const controllerAndModuleRefs = {
     module: config.module,
-    controller: null
+    controller: String(routeSourcePath).trim()
   }
 
   if (typeof 'str' !== typeof routeSourcePath &&
     /\S/.test(routeSourcePath)) {
-    return null
+    return controllerAndModuleRefs
   }
 
   const routeSourcePathSlices = routeSourcePath.split(/\s*:\s*/)
