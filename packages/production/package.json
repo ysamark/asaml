@@ -10,7 +10,7 @@
   "displayName": "Asa.ml",
   "homepage": "https://github.com/ysamark/asaml#readme",
   "scripts": {
-    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js\" --out-dir dist --copy-files --no-copy-ignored",
+    "build": "babel src --config-file \"./babel.config.js\" --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "postbuild": "node vendor/dist-package-files.js",
     "test": "cross-env NODE_ENV=test jest",
     "lint": "eslint --ext .js src/",
@@ -61,8 +61,10 @@
       "prepare-ommit-msg": "exec < /dev/tty && npx cz --hook || true"
     }
   },
-  "dist": [
-    "README.md",
-    "package.json"
-  ]
+  "dist": {
+    "paths": [
+      "README.md",
+      "package.json"
+    ]
+  }
 }
