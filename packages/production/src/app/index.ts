@@ -43,9 +43,12 @@ export class App {
         : [])
     ]
 
-    if (setup instanceof Array) {
-      await Promise.all([...setup, initApplicationConfig()])
-    }
+    await Promise.all([
+      ...(setup instanceof Array
+        ? setup
+        : []),
+      initApplicationConfig()
+    ])
 
     const log = debug('app')
 
