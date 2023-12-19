@@ -5,6 +5,7 @@ import { config } from '@asa'
 
 export { Helper } from './Helper'
 export { Factory } from './Factory'
+export { requireAppFile } from './requireAppFile'
 export { loadSetupHandlers } from './loadSetupHandlers'
 export { updateApplicationPaths } from './updateApplicationPaths'
 export { initApplicationConfig } from './initApplicationConfig'
@@ -163,7 +164,7 @@ export const mergeObjects = (...objects) => {
     }
   }
 
-  return mergeObjects
+  return mergedObjects
 }
 
 export const joinSourcePaths = (...paths) => {

@@ -8,19 +8,19 @@ export class ApplicationConfig {
     modulesDirName: 'modules'
   }
 
-  static get defaultModuleDir () {
+  static get defaultModuleDir() {
     return this.resolvePath(this.module)
   }
 
-  static get defaultModulesDirName () {
+  static get defaultModulesDirName() {
     return this[propsSymbol].modulesDirName
   }
 
-  static get modulesDirName () {
+  static get modulesDirName() {
     return this.modulesDirExists() ? this.defaultModulesDirName : null
   }
 
-  static get module () {
+  static get module() {
     return this[propsSymbol].module
   }
 
@@ -29,7 +29,7 @@ export class ApplicationConfig {
    *
    * Application root dir
    */
-  static get rootDir () {
+  static get rootDir() {
     return require.main.path
   }
 
@@ -38,7 +38,7 @@ export class ApplicationConfig {
    *
    * controllers path getter
    */
-  static get controllersPath () {
+  static get controllersPath() {
     return this.resolvePath(this.module, 'controllers')
   }
 
@@ -47,7 +47,7 @@ export class ApplicationConfig {
    *
    * models path getter
    */
-  static get modelsPath () {
+  static get modelsPath() {
     return this.resolvePath(this.module, 'models')
   }
 
@@ -56,7 +56,7 @@ export class ApplicationConfig {
    *
    * middlewares path getter
    */
-  static get middlewaresPath () {
+  static get middlewaresPath() {
     return this.resolvePath(this.module, 'middlewares')
   }
 
@@ -65,7 +65,7 @@ export class ApplicationConfig {
    *
    * helpers path getter
    */
-  static get helpersPath () {
+  static get helpersPath() {
     return this.resolvePath(this.module, 'helpers')
   }
 
@@ -74,7 +74,7 @@ export class ApplicationConfig {
    *
    * controllers path getter
    */
-  static controllersPathByModule (module) {
+  static controllersPathByModule(module) {
     return this.resolveModulePath(module, 'controllers')
   }
 
@@ -83,7 +83,7 @@ export class ApplicationConfig {
    *
    * models path getter
    */
-  static modelsPathByModule (module) {
+  static modelsPathByModule(module) {
     return this.resolveModulePath(module, 'models')
   }
 
@@ -92,7 +92,7 @@ export class ApplicationConfig {
    *
    * middlewares path getter
    */
-  static middlewaresPathByModule (module) {
+  static middlewaresPathByModule(module) {
     return this.resolveModulePath(module, 'middlewares')
   }
 
@@ -101,7 +101,7 @@ export class ApplicationConfig {
    *
    * helpers path getter
    */
-  static helpersPathByModule (module) {
+  static helpersPathByModule(module) {
     return this.resolveModulePath(module, 'helpers')
   }
 
@@ -110,17 +110,17 @@ export class ApplicationConfig {
    *
    * schemas path getter
    */
-  static get schemasPath () {
+  static get schemasPath() {
     return this.resolvePath('database', 'schemas')
   }
 
-  static modulesDirExists () {
+  static modulesDirExists() {
     const { isDir } = require('@asa/utils')
 
     return isDir([this.rootDir, this.defaultModulesDirName])
   }
 
-  static resolveModulePath (module, ...args) {
+  static resolveModulePath(module, ...args) {
     const modulePathSliceMap = (modulePathSlice) => (
       /**
        * Prefix whole the module path slice with: modules/
@@ -229,9 +229,9 @@ export class ApplicationConfig {
    *
    * resolve a given path string
    */
-  static resolvePath () {
+  static resolvePath(...argumentsList: string[]) {
     const args = (
-      Array.from(arguments)
+      argumentsList
         .filter(arg => typeof arg === typeof 'str' && /\S/.test(arg))
     )
 
@@ -251,7 +251,7 @@ export class ApplicationConfig {
     return null
   }
 
-  static setup (configProps) {
+  static setup(configProps) {
     if (typeof configProps === 'object') {
       this[propsSymbol] = {
         ...this[propsSymbol],

@@ -4,6 +4,10 @@ export const initApplicationConfig = async () => {
   const { Router, config, ApplicationModuleConfig } = await import('@asa')
   const { getAppModules, isFile, moduleRefToPath } = await import('@asa/utils')
 
+  if (isFile(`${config.rootDir}/config/routes.js`)) {
+    await import(`${config.rootDir}/config/routes.js`)
+  }
+
   const appModules = getAppModules()
 
   for (const appModule in appModules) {
