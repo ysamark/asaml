@@ -54,16 +54,16 @@ jobs:
       # Publish development package
       # - name: open development package directory
       #   run: cd packages/development/dist
-      - name: update the module version
-        run: |
-          cd packages/development
-          npm version minor
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: Build the Package
         run: |
           cd packages/development
           yarn build
+      - name: update the module version
+        run: |
+          cd packages/development/dist
+          npm version minor
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: publish the development module to the node package manager #2
         run: |
           cd packages/development/dist
@@ -80,12 +80,6 @@ jobs:
       # Publish production package
       # - name: open production package directory
       #   run: cd packages/production/dist
-      - name: update the module version
-        run: |
-          cd packages/production
-          npm version minor
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       # - name: Install asaml-dev Package
       #   run: |
       #     cd packages/production
@@ -94,6 +88,12 @@ jobs:
         run: |
           cd packages/production
           yarn build
+      - name: update the module version
+        run: |
+          cd packages/production/dist
+          npm version minor
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
       - name: publish the production module to the node package manager #2
         run: |
           cd packages/production/dist
