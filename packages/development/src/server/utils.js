@@ -62,16 +62,18 @@ export const serverWatchDirListMapper = ({ rootDir }) => {
 
 export const getProjectDefaultLang = (props = {}) => {
   const langConfigFile = getPackageLangConfigFile(props)
-  const langConfigFileName = path.basename(langConfigFile)
-
   const defaultLang = 'js'
-  const langNameRe = /^(((j|t)s)config\.json)$/
 
-  if (langNameRe.test(langConfigFileName)) {
-    const [lang] = langConfigFileName.match(langNameRe).slice(2)
+  if (langConfigFile) {
+    const langConfigFileName = path.basename(langConfigFile)
+    const langNameRe = /^(((j|t)s)config\.json)$/
 
-    if (typeof lang === typeof 'str') {
-      return lang
+    if (langNameRe.test(langConfigFileName)) {
+      const [lang] = langConfigFileName.match(langNameRe).slice(2)
+
+      if (typeof lang === typeof 'str') {
+        return lang
+      }
     }
   }
 
