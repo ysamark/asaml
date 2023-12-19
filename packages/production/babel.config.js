@@ -10,6 +10,9 @@ module.exports = {
           node: '6'
         }
       }
+    ],
+    [
+      '@babel/preset-typescript'
     ]
   ],
 
