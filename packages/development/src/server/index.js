@@ -15,11 +15,9 @@ export class AsaDevServer {
    * @param {ChildProcess} process
    */
   constructor (process) {
-    if (!(process instanceof ChildProcess)) {
-      throw new TypeError('process must to instance of ChildProcess')
+    if (process instanceof ChildProcess) {
+      this[processSymbol] = process
     }
-
-    this[processSymbol] = process
   }
 
   /**
@@ -41,7 +39,7 @@ export class AsaDevServer {
 
     killTree(this.process.pid || -1, 'SIGKILL', (error) => {
       if (error) {
-        console.error('Error killing the tree process => \n', error, '\n\n\n\n\n\n')
+        // console.error('Error killing the tree process => \n', error, '\n\n\n\n\n\n')
       }
 
       try {
