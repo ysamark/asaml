@@ -1,13 +1,7 @@
 {
-  "entrypoint": "src/server.ts",
-  "watch": [
-    "vendor"
-  ],
-  "execMap": {
-    "ts": "sucrase-node --cache-assets --strict=False"
-  },
+  "watch": [],
+  "execMap": {},
   "env": {
-    "MY_NAME": "Samil",
-    "APP_NAME": "AmazingA"
+    "PORT": 7700
   }
 }
