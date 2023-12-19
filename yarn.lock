@@ -2218,7 +2218,7 @@
 
 "asaml-dev@file:/home/runner/work/asaml/asaml/packages/development":
   "resolved" "file:packages/development"
-  "version" "1.18.0"
+  "version" "1.19.0"
   dependencies:
     "@asaml/fs-helpers" "^1.1.0"
     "@babel/cli" "^7.19.3"
@@ -2264,9 +2264,9 @@
     "vitest" "^0.34.6"
 
 "asaml-dev@latest":
-  "integrity" "sha512-ltFDJ/GmFTKbSNiShEwbxdkAyffBFoJxLhvh5huteccUdUr6OreN+NGzjCQEc1XGmyPuHQaLmW+luSv5qAqDew=="
-  "resolved" "https://registry.npmjs.org/asaml-dev/-/asaml-dev-1.17.0.tgz"
-  "version" "1.17.0"
+  "integrity" "sha512-DWG0/qy7kIyUN2921uYmQx5FSZO4mJr+SGfwNa95aH3NAj8IMe4ioo797lJtTaYKD8gzSoH/pWy4fBQ6R5sOig=="
+  "resolved" "https://registry.npmjs.org/asaml-dev/-/asaml-dev-1.18.0.tgz"
+  "version" "1.18.0"
   dependencies:
     "@asaml/fs-helpers" "^1.1.0"
     "@babel/cli" "^7.19.3"
